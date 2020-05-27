@@ -3,7 +3,7 @@
     <http:listener-config name="americanflightapi-httpListenerConfig">
         <http:listener-connection host="0.0.0.0" port="8082" />
     </http:listener-config>
-    <apikit:config name="americanflightapi-config" api="resource::edcaf95f-4dc0-4e05-9a32-71ed7e2d7572:americanflightapi:1.0.1:raml:zip:americanflightapi.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <apikit:config name="americanflightapi-config" api="resource::edcaf95f-4dc0-4e05-9a32-71ed7e2d7572:americanflightapi:1.0.2:raml:zip:americanflightapi.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
     <flow name="americanflightapi-main">
         <http:listener config-ref="HTTP_Listener_config" path="/api/*">
             <http:response statusCode="#[vars.httpStatus default 200]">
@@ -148,5 +148,22 @@ output application/json
     </flow>
     <flow name="post:\flights:application\json:americanflightapi-config">
         <flow-ref doc:name="PostFlights" doc:id="020ce95b-e0ff-4010-babb-a4df2b97782b" name="postFlight" />
+    </flow>
+    <flow name="put:\flights\(ID):application\json:americanflightapi-config">
+        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core">
+            <ee:variables>
+                <ee:set-variable variableName="ID">attributes.uriParams.'ID'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <ee:transform xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  message: "Flight updated (but not really)"
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
     </flow>
 </mule>

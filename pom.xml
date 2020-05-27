@@ -77,7 +77,7 @@
     	<dependency>
             <groupId>edcaf95f-4dc0-4e05-9a32-71ed7e2d7572</groupId>
             <artifactId>americanflightapi</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.2</version>
             <classifier>raml</classifier>
             <type>zip</type>
         </dependency>
