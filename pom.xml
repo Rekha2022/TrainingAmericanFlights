@@ -72,7 +72,7 @@
     	<dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.19</version>
+            <version>8.0.28</version>
         </dependency>
     	<dependency>
             <groupId>edcaf95f-4dc0-4e05-9a32-71ed7e2d7572</groupId>
